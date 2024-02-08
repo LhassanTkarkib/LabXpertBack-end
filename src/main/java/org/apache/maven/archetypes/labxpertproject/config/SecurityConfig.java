@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(req ->
                         req.antMatchers("/api/auth/**").permitAll()
+                                .antMatchers("/api/users/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
