@@ -6,8 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.maven.archetypes.labxpertproject.entitiy.enums.RoleDutilisateur;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.token.Token;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.apache.maven.archetypes.labxpertproject.entitiy.token.Token;
+
+
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -26,7 +28,7 @@ public class Utilisateur implements UserDetails {
     @SequenceGenerator(name = "ryu", sequenceName = "ryu", allocationSize = 1)
     private Long utilisateurId;
 
-    private String Username;
+    private String username;
 
     private String email;
 

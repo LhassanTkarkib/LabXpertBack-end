@@ -2,7 +2,7 @@ package org.apache.maven.archetypes.labxpertproject.entitiy.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
