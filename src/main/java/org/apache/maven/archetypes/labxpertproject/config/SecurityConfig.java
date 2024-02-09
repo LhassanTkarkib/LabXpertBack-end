@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.util.Collections;
 
+import static org.springframework.security.config.http.SessionCreationPolicy.ALWAYS;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 @Configuration
 @EnableWebSecurity
@@ -34,7 +35,7 @@ public class SecurityConfig {
                                 .antMatchers("/api/users/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(ALWAYS))
                 .authenticationProvider(authenticationProvider)
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
