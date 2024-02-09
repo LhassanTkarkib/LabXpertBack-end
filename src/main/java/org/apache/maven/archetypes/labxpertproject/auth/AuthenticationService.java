@@ -22,6 +22,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
+
     private final UtilisateurRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
@@ -33,7 +34,8 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole()).build();
+                .role(request.getRole())
+                .build();
 
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -53,6 +55,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
+
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);

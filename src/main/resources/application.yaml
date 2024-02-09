@@ -6,8 +6,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/LabXpert
     username: postgres
     password: 50145014
-
-
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 07a48ce12640ac3ce986
+            client-secret: 74e64d4b340752eee7dddd6c3849351d2064d39d
   jpa:
     hibernate:
       ddl-auto: update
@@ -30,7 +35,7 @@ application:
   security:
     jwt:
       secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-      expiration: 86400000 # a day
+      expiration: 86400000  # a day
       refresh-token:
         expiration: 604800000 # 7 days
 
