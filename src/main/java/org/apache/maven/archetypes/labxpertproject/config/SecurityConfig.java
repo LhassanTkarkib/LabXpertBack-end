@@ -33,9 +33,16 @@ public class SecurityConfig {
                 .authorizeRequests(req ->
                         req.antMatchers("/api/auth/**").permitAll()
                                 .antMatchers("/api/users/**").hasRole("ADMIN")
+                                .antMatchers("/api/analyses/**").hasAnyRole( "MANAGER")
+                                .antMatchers("/api/patient**").hasAnyRole( "MANAGER")
+                                .antMatchers("/api/sousanalyses/mesures/all/**").hasAnyRole("ADMIN", "MANAGER","TECHNICIEN")
+
+
                                 .anyRequest().authenticated()
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(ALWAYS))
+                .sessionManagement(session -> session.sessionCreationPolicy(
+                        ALWAYS
+                ))
                 .authenticationProvider(authenticationProvider)
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
