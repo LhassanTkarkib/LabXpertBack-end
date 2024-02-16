@@ -1,22 +1,21 @@
 package org.apache.maven.archetypes.labxpertproject.auth;
 
-
 import lombok.RequiredArgsConstructor;
+import org.apache.maven.archetypes.labxpertproject.config.LogoutService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-
 public class AuthenticationController {
 
     private final AuthenticationService service;
+    private final LogoutService logoutService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -33,4 +32,3 @@ public class AuthenticationController {
     }
 
 }
-
