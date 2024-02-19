@@ -36,8 +36,6 @@ public class SecurityConfig {
                                 .antMatchers("/api/analyses/**").hasAnyRole( "MANAGER")
                                 .antMatchers("/api/patient**").hasAnyRole( "MANAGER")
                                 .antMatchers("/api/sousanalyses/mesures/all/**").hasAnyRole("ADMIN", "MANAGER","TECHNICIEN")
-
-
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(
