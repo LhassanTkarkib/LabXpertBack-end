@@ -14,6 +14,7 @@ import org.apache.maven.archetypes.labxpertproject.entitiy.token.Token;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -39,8 +40,8 @@ public class Utilisateur implements UserDetails {
 
     private String InformationsPersonalises;
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,6 +29,13 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public DefaultCookieSerializer defaultCookieSerializer(){
+        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+        serializer.setSameSite("none"); // Make sure it's "none", not "None"
+        return serializer;
+    }
+
+    @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
@@ -35,10 +43,6 @@ public class ApplicationConfig {
         return authProvider;
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
